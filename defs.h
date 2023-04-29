@@ -10,6 +10,9 @@ struct sleeplock;
 struct stat;
 struct superblock;
 
+int memory_log;
+int scheduler_log;
+
 // bio.c
 void            binit(void);
 struct buf*     bread(uint, uint);

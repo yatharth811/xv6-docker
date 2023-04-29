@@ -12,6 +12,12 @@ struct {
   struct proc proc[NPROC];
 } ptable;
 
+struct {
+  struct container containers[NPROC];
+  struct spinlock lock;
+  int cnt;
+} container_list;
+
 static struct proc *initproc;
 
 int nextpid = 1;
@@ -532,3 +538,27 @@ procdump(void)
     cprintf("\n");
   }
 }
+
+int build_container() {
+  acquire(&container_list.lock);
+  
+  for (int i = 0; i < NPROC; i++) {
+    if (container_list.containers[i].state == INACTIVE) {
+      container_list.containers[i].cid = i;
+      container_list.containers[i].state == ACTIVE;
+      
+      release(&container_list.lock);
+      return i;
+    }
+  }
+
+  release(&container_list.lock);
+
+  return -1;
+}
+
+int tear_container(int id) {
+  
+}
+
+

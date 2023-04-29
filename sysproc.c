@@ -89,3 +89,58 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+
+int 
+sys_ps(void) {
+  ps();
+  return 0;
+}
+
+int sys_build_container(void){
+  return build_container();
+}
+
+int sys_tear_container(void){
+  int i;
+  if(argint(0, &i) < 0)
+    return -1;
+  return tear_container(i);
+}
+
+int sys_join_container(void){
+  int i;
+  if(argint(0, &i) < 0)
+    return -1;
+  return join_container(i);
+}
+
+int sys_exit_container(void){
+  return exit_container();
+}
+
+int sys_scheduler_log_on(void){
+  scheduler_log = 1;
+  return 1;
+}
+
+int sys_scheduler_log_off(void){
+  scheduler_log = 0;
+  return 1;
+}
+
+int sys_memory_log_on(void){
+  memory_log = 1;
+  return 1;
+}
+
+int sys_memory_log_off(void){
+  memory_log = 0; 
+  return 1;
+}
+
+int
+sys_getcid(void)
+{
+  return myproc()->container_id;
+}
+

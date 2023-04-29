@@ -104,6 +104,17 @@ extern int sys_wait(void);
 extern int sys_write(void);
 extern int sys_uptime(void);
 
+extern int sys_ps(void);
+extern int sys_build_container(void);
+extern int sys_tear_container(void);
+extern int sys_join_container(void);
+extern int sys_exit_container(void);
+extern int sys_scheduler_log_on(void);
+extern int sys_scheduler_log_off(void);
+extern int sys_memory_log_on(void);
+extern int sys_memory_log_off(void);
+extern int sys_getcid(void);
+
 static int (*syscalls[])(void) = {
 [SYS_fork]    sys_fork,
 [SYS_exit]    sys_exit,
@@ -126,6 +137,17 @@ static int (*syscalls[])(void) = {
 [SYS_link]    sys_link,
 [SYS_mkdir]   sys_mkdir,
 [SYS_close]   sys_close,
+
+[SYS_ps]                 sys_ps,
+[SYS_build_container]    sys_build_container,
+[SYS_tear_container]     sys_tear_container,
+[SYS_join_container]    sys_join_container, 
+[SYS_exit_container]     sys_exit_container,
+[SYS_scheduler_log_on]   sys_scheduler_log_on,
+[SYS_scheduler_log_off]  sys_scheduler_log_off,
+[SYS_memory_log_on]      sys_memory_log_on,
+[SYS_memory_log_off]     sys_memory_log_off,
+[SYS_getcid]             sys_getcid
 };
 
 void

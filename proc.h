@@ -49,6 +49,8 @@ struct proc {
   struct file *ofile[NOFILE];  // Open files
   struct inode *cwd;           // Current directory
   char name[16];               // Process name (debugging)
+
+  uint cid;    // the process is part of which container
 };
 
 // Process memory is laid out contiguously, low addresses first:
@@ -56,3 +58,13 @@ struct proc {
 //   original data and bss
 //   fixed-size stack
 //   expandable heap
+
+enum state { INACTIVE, ACTIVE };
+
+struct container{
+  int cid;
+  int curproc;
+  int mypids[NPROC];
+  enum state state;
+};
+

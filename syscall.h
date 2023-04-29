@@ -20,3 +20,15 @@
 #define SYS_link   19
 #define SYS_mkdir  20
 #define SYS_close  21
+
+#define SYS_ps                    22
+#define SYS_build_container       23
+#define SYS_tear_container        24
+#define SYS_join_container        25  
+#define SYS_exit_container        26
+#define SYS_scheduler_log_on	  27
+#define SYS_scheduler_log_off	  28
+#define SYS_memory_log_on		  29
+#define SYS_memory_log_off		  30
+#define SYS_getcid                31
+
